@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('partials/header') %>
+    <title>HamroChat</title>
+</head>
+
+<body>
+    <div id="dropdown" onclick="openclosenav()">
+        <!-- Icon made by Freepik from www.flaticon.com -->
+        <img id="dropdown-img" src="/imgs/dropdown.png" alt="dropdown menu">
+    </div>
+    <header id="tocollapse">
+        <nav>
+            <div id="brand">
+                <strong>HC</strong>
+            </div>
+            <div id="menu">
+                <ul>
+                    <a href="#home" class="nav-items">
+                        <li>Home</li>
+                    </a>
+                    <a href="#about" class="nav-items">
+                        <li>About</li>
+                    </a>
+                    <a href="#features" class="nav-items">
+                        <li>Features</li>
+                    </a>
+                </ul>
+            </div>
+            <div id="login-reg">
+                <ul>
+                    <a href="/login"><button id="login-btn">Login</button></a>
+                    <a href="/register"><button id="reg-btn">Register</button></a>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div id="goup">
+            <a href="#home">
+                <!-- Icon made by Pixel perfect from www.flaticon.com -->
+                <img src="/imgs/up.png" alt="TOP">
+            </a>
+        </div>
+        <section id="home">
+            <h1>HamroChat</h1>
+            <p>The only Chat app you'll ever need</p>
+            <div id="down">
+                <a href="#about">
+                    <img src="/imgs/down.svg" alt="scroll down?">
+                </a>
+            </div>
+        </section>
+        <section id="about">
+            <div class="content-heading">
+                <h2>ABOUT</h2>
+            </div>
+            <div class="content">
+                <div class="content-1">
+                    <p>Made with utmost care, and keeping in mind of our valuable users, We bring to you HamroChat.
+                        Our Chatting Application is like no other. It is simple, no fancy features, where you can have a 
+                    one to one convo or a convo with a group!</p>
+                    <!-- <p>Currently pursing my final year in Bachelors in Computer Science and Engineering, This project is
+                        and will always be of great importance to me. The sole purpose of this creation of mine is to
+                        bridge the gap between two individuals by means of communcation.</p> -->
+                    <p>Popular chatting applications have group limit restrictions, and thus, we come to the resuce!
+                        With a basic 1-1 chatting module, we even provide a group feature allowing you to connect with
+                        over 1000 peers at a time! and we plan on adding more features, so 
+                        <span class="tuned">Stay tuned!</span></p>
+                </div>
+                <div class="content-2">
+                    <img src="/imgs/saly.svg" alt="Saly on computer">
+                </div>
+            </div>
+        </section>
+        <section id="features">
+            <div class="content-heading">
+                <h2>FEATURES</h2>
+            </div>
+            <div class="content content-wrap">
+                <div class="box">
+                    <div class="box-heading">SECURE</div>
+                    <div class="box-image">
+                        <!-- <img src="/imgs/secure.svg" alt="secure"> -->
+                        <i class="fa-solid fa-lock"></i>
+                    </div>
+                    <p>Security is what we all yearn for. Thus, You can login/register with your google account, or our
+                        secure login. You can rest assure your data will be safe and sound with us.</p>
+                </div>
+                <div class="box">
+                    <div class="box-heading">CHAT</div>
+                    <div class="box-image">
+                        <!-- <img src="/imgs/message.svg" alt="message"> -->
+                        <i class="fa-regular fa-message"></i>
+                    </div>
+                    <p>We make communication easy and simple. From your part of the world, to any part of the world, It
+                        is possible and absolutely for free.</p>
+                </div>
+                <div class="box">
+                    <div class="box-heading">USER FRIENDLY UI</div>
+                    <div class="box-image">
+                        <!-- <img src="/imgs/chill.svg" alt="chill"> -->
+                        <i class="fa-solid fa-baby"></i>
+                        <!-- <i class="fa-regular fa-face-grin-beam"></i> -->
+                    </div>
+                    <p>Built with great care and keeping in mind the tiniest details, so you can navgiate through the
+                        website hassle
+                        free. Take a chill pill, and enjoy!</p>
+                </div>
+                <div class="box">
+                    <div class="box-heading">COLOUR BLIND FRIENDLY</div>
+                    <div class="box-image">
+                        <!-- <img src="/imgs/chill.svg" alt="chill"> -->
+                        <i class="fa-solid fa-palette"></i>
+                    </div>
+                    <p>We don't want anyone to feel left out! And voila, you can tap the brush icon on the bottom
+                        left corner of your scree, and we become compatible for all users!</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <p>Made with ♥</p>
+            <p>All rights reserved - Copyrights@2022</p>
+        </div>
+    </footer>
+    <script src="/validate.js"></script>
+    <%- include('partials/colourBlindChange') %>
+    <script src="/colourBlind.js"></script>
+</body>
+
+</html>

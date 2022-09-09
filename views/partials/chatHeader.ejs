@@ -1,0 +1,40 @@
+<div id="dropdown">
+    <!-- Icon made by Freepik from www.flaticon.com -->
+    <img id="dropdown-img" onclick="openclosenav()" src="/imgs/dropdown.png" alt="dropdown menu">
+</div>
+<header id="tocollapse">
+    <nav>
+        <div id="brand">
+            <strong><a href="/HamroChat-Home">HC</a></strong>
+        </div>
+        <div id="menu">
+            <ul>
+                <a href="#" class="nav-items" id="settings-btn">
+                    <i class="fa-solid fa-gear" class="rotate-icon"></i>
+                </a>
+            </ul>
+        </div>
+        <div id="login-reg">
+            <ul>
+                <form action="/home" method="post">
+                    <button id="logout">Log Out?</button>
+                </form>
+            </ul>
+        </div>
+    </nav>
+    <script async defer>
+        const settingsBtn = document.querySelector('#settings-btn')
+        const settingsIcon = document.querySelector('#settings-btn>i')
+        settingsBtn.addEventListener('click',()=>{
+            if(settingsIcon.classList.contains('rotate-icon')){
+                settingsIcon.classList.toggle('rotate-icon-alt')
+                setTimeout(()=>{
+                    settingsIcon.classList.toggle('rotate-icon-alt')
+                    settingsIcon.classList.toggle('rotate-icon')
+                },1000)
+            }else{
+                settingsIcon.classList.toggle('rotate-icon')
+            }
+        })
+    </script>
+</header>

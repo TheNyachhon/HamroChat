@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('partials/header') %>
+    <title>HamroChat - Group Profile</title>
+</head>
+
+<body>
+    <%- include('partials/chatHeader') %>
+    <main>
+        <div id="goup">
+            <a href="#">
+                <!-- Icon made by Pixel perfect from www.flaticon.com -->
+                <img src="/imgs/up.png" alt="TOP">
+            </a>
+        </div>
+        <section id="chat">
+            <%-include('partials/help')%>
+            <div id="chat-container">
+                <div id="group-chat-header">
+                    <div id="chat-header-img">
+                        <a href="/HamroChat-groups/"><i class="fas fa-angle-double-left"></i></a>
+                    </div>
+                    <div id="user-header-img">
+                        <!-- <i class="fa-solid fa-gear"></i> -->
+                        <i class="fa-solid fa-address-book"></i>
+                    </div>
+                    <div id="user-exit-img">
+                        <form id="group-exit"
+                            <%if(id == adminData._id){%>
+                                action="/HamroChat-group-profile/deleteGroup/<%=groupData._id%>"
+                                onsubmit = "deleteGroup(event)" method="post">
+                            <%}else{%>
+                                action="/HamroChat-group-profile/exit/<%=groupData._id%>"
+                                onsubmit = "confirmExit(event   )" method="post">
+                            <%}%>
+                            <button>
+                                <%if(id == adminData._id){%>
+                                    <i id="user-exit-img" class="fa-solid fa-eraser"></i>
+                                <%}else{%>
+                                    <i id="user-exit-img" class="fa-solid fa-right-from-bracket"></i>
+                                <%}%>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div id="user-details-box">
+                    <div id="group-header">
+                        <label>Group Details</label>
+                    </div>
+                    <div id="user-profile-body">
+                        <div id="group-details" class="user-profile-info">
+                            <label for="">Name</label>
+                            <p><a href="/HamroChat-group-message/<%=groupData.group_id%>/">
+                                <%=groupData.group_name%></a></p>
+                        </div>
+                        <div id="group-details" class="user-profile-info">
+                            <label>Group ID</label>
+                            <span id="groupId"><%=groupData.group_id%></span><i id="copy-code" class="fa-regular fa-copy"></i>
+                        </div>
+                        <div id="group-details" class="user-profile-info">
+                            <label for="">Admin</label>
+                            <p><%=adminData.firstName+" "+adminData.lastName%></p>
+                        </div>
+                    </div>
+                    <div class="user-profile-info">
+                        <h3>Users</h3>
+                    </div>
+                    <div id="user-profile-body">
+                        <%if(admin==true){%>
+                        <div id="chat-search">
+                            <form action="/HamroChat-group-profile/add/<%=groupData._id%>" method="post">
+                                <div id="chat-search-image">
+                                    <i class="fas fa-search"></i>
+                                </div>
+                                <input id="chat-search-bar" type="text" name="email"
+                                placeholder="Enter email ID to add user!" required>
+                                <button id="add-user">Add User</button>
+                            </form>
+                        </div>
+                        <%}%>
+                        <div class="total-members">
+                            <div class="status">
+                                Total Members :&nbsp;
+                                <%let count=0%>
+                                <%for(let n of groupData.users){%>
+                                    <%count++%>
+                                <%}%>
+                                <%=count%>
+                            </div>
+                        </div>
+                        <div class="user-profile-info">
+                            <div id="group-users-list">
+                                <%for(let x of groupData.users){%>
+                                    <%const data=allUsers.filter(d=>{return d._id.equals(x.user)})%>
+                                    <%//console.log("the data is")%>
+                                    <%//console.log(data)%>
+                                    <div class="group-user">
+                                        <%if(data[0]._id.equals(adminData._id)){%>
+                                            <i class="fa-solid fa-crown"></i>
+                                            <%}else{%>
+                                                <i class="fa-solid fa-user"></i>
+                                        <%}%>
+                                        <span><%=data[0].firstName+" "+data[0].lastName%></span>
+                                        <span><%=data[0].email%></span>
+                                        <%if(admin==true && !data[0]._id.equals(adminData._id)){%>
+                                            <form action="/HamroChat-group-profile/delete/<%=groupData._id%>" method="post" id="delete-form"
+                                                onsubmit = "confirmDeletion(event)">
+                                                <input type="text" name="uid_delete" value="<%=data[0]._id%>" hidden>
+                                                <button id="group-user-btn">
+                                                    <i class="fa-solid fa-trash-can"></i>
+                                                </button>
+                                            </form>
+                                        <%}else{%>
+                                            <button id="group-user-btn" style="opacity:0;">
+                                                <i class="fa-solid fa-trash-can"></i>
+                                            </button>
+                                        <%}%>
+                                    </div>
+                                <%}%>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script src="/validate.js"></script>
+        <script>
+            function deleteGroup(e){
+                const deleteGroup = confirm("Delete Group?")
+                if(!deleteGroup){
+                    console.log("Deletion cancelled.\n")
+                    e.preventDefault()
+                }else{
+                    console.log(deleteGroup)
+                }
+            }
+            function confirmExit(e){
+                const confirmExit = confirm("Exit Group?")
+                if(!confirmExit){
+                    console.log("Exit cancelled.\n")
+                    e.preventDefault()
+                }else{
+                    console.log(confirmExit)
+                }
+            }
+            function confirmDeletion(e){
+                const confirmDelete = confirm("Delete User?")
+                if(!confirmDelete){
+                    console.log("Deletion cancelled.\n")
+                    e.preventDefault()
+                }else{
+                    console.log(confirmDelete)
+                }
+            }
+            let copy = document.querySelector('#copy-code')
+            let code = document.querySelector('#groupId')
+            copy.addEventListener('click',async()=>{
+                await navigator.clipboard.writeText(code.innerText)
+                .then(()=>{
+                    alert("Group code copied!")
+                })
+            })
+
+        </script>
+        <%- include('partials/colourBlindChange') %>
+        <script src="/colourBlind.js"></script>
+    </main>
+</body>
+</html>

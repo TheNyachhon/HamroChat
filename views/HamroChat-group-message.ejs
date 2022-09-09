@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('partials/header') %>
+        <title>HamroChat - Group Message</title>
+</head>
+
+<body>
+    <%- include('partials/chatHeader') %>
+        <main>
+            <div id="goup">
+                <a href="#">
+                    <!-- Icon made by Pixel perfect from www.flaticon.com -->
+                    <img src="/imgs/up.png" alt="TOP">
+                </a>
+            </div>
+            <section id="chat">
+                <%- include('partials/help')%>
+                    <div id="chat-container">
+                        <div id="chat-header">
+                            <div id="chat-header-img">
+                                <a href="/HamroChat-groups/"><i
+                                        class="fas fa-angle-double-left"></i></a>
+                            </div>
+                            <div id="chat-header-name">
+                                <%=groupData.group_name%>
+                            </div>
+                            <div class="user-chat">
+                                <a
+                                    href="/HamroChat-group-profile/<%=groupData._id%>">
+                                    <i id="info" class="fa-solid fa-info"></i></a>
+                            </div>
+                        </div>
+                        <div id="message-content">
+                            <!-- <div class="message receiver">
+                                <div class="friend">
+                                    Hey Rujin! How are you?
+                                </div>
+                            </div>
+                            <div class="message sender">
+                                <div class="self">
+                                    All good! and you?
+                                </div>
+                            </div>
+                            <div class="message sender">
+                                <div class="self">
+                                    Did you get vaccinated yet?
+                                </div>
+                            </div>
+                            <div class="message receiver">
+                                <div class="friend">
+                                    Same with me! yup, just recently. you?
+                                    <div class="message-time">
+                                        3:42 am
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="message sender">
+                                <div class="self">
+                                    <div class="message-time">
+                                        Rujin
+                                    </div>
+                                    Done and dusted! 😀
+                                </div>  
+                            </div>     -->
+                        </div>
+                        <div id="send-message">
+                            <form action="" id="send-message-form">
+                                <%const username = currentUser.firstName+" "+currentUser.lastName%>
+                                <%//console.log("username is: "+username)%>
+                                <input type="text" id="sender-username" value="<%=username%>" hidden>
+                                <input type="text" name="message-to-send" id="message-to-send" placeholder="write a message . . ." required>
+                                <button id="send-message-btn" type="submit">
+                                    <i class="fa fa-paper-plane"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+            </section>
+            <script src="/validate.js"></script>
+            <script src="/socket.io/socket.io.js"></script>
+            <script src="/group-client.js"></script>
+            <script>
+                let uid='<%=currentUser._id%>'
+                let gid='<%=groupData.group_id%>'
+                socket.emit('createGroupRoom', {uid,gid});
+            </script>
+            <%- include('partials/colourBlindChange') %>
+            <script src="/colourBlind.js"></script>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('partials/header') %>
+        <title>HamroChat - Groups</title>
+</head>
+
+<body>
+    <%- include('partials/chatHeader') %>
+        <main>
+            <div id="goup">
+                <a href="#">
+                    <!-- Icon made by Pixel perfect from www.flaticon.com -->
+                    <img src="/imgs/up.png" alt="TOP">
+                </a>
+            </div>
+            <section id="chat">
+                <%- include('partials/help')%>
+                    <div id="chat-container">
+                        <div id="chat-header">
+                            <div id="chat-header-img">
+                                <a href="/HamroChat-home/"><i
+                                        class="fas fa-angle-double-left"></i></a>
+                            </div>
+                            <div id="chat-header-name">
+                                <!-- User name -->
+                                <%=currentUser.firstName+" "+currentUser.lastName%>
+                            </div>
+                    <!-- Green if online, otherwise offline -->
+                    <div id="chat-header-onoff">
+                                    <img src="/imgs/online.svg" alt="Active">
+                        </div>
+                        </div>
+                        <div id="chat-content">
+                            <div id="groups-heading">
+                                <a href="/HamroChat-groups/join/"><button id="view-groups">Join Group</button></a>
+                                <a href="/HamroChat-groups/create/"><button id="view-groups">Create Group</button></a>
+                            </div>
+                            <!-- All groups -->
+                            <div id="chat-users">
+                                <% const groups=currentUser.groups%>
+                                <%=console.log("User's groups:")%>
+                                <%=console.log(groups)%>
+                                <%let i=0%>
+                                <%for(let x of groups){%>
+                                    <!-- Extracting groups info from database -->
+                                    <%const groupData=allGroups.filter(d=>{return x.group==d.group_id})%>
+                                    <%//console.log("the group data is ")%>
+                                    <%//console.log(groupData)%>
+                                        <div class="user">
+                                            <a
+                                                href="/HamroChat-group-message/<%=groupData[0].group_id%>/">
+                                                <div class="user-img">
+                                                    <i class="far fa-user"></i>
+                                                </div>
+                                                <div class="name-status">
+                                                    <div class="name">
+                                                        <%=groupData[0].group_name%>
+                                                    </div>
+                                                    <div class="status">
+                                                        Members :&nbsp;
+                                                        <%let count=0%>
+                                                        <%for(let n of groupData[0].users){%>
+                                                            <%count++%>
+                                                        <%}%>
+                                                        <%=count%>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <div class="user-chat">
+                                                <a
+                                                    href="/HamroChat-group-profile/<%=groupData[0]._id%>">
+                                                    <i id="info" class="fa-solid fa-info"></i></a>
+                                            </div>
+                                        </div>
+                                    <%i++}%>
+                            </div>
+                        </div>
+                    </div>
+            </section>
+            <script src="/validate.js"></script>
+            <%- include('partials/colourBlindChange') %>
+            <script src="/colourBlind.js"></script> 
+        </main>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include("partials/header")%>
+    <title>HamroChat - Login</title>
+</head>
+
+<body>
+    <%if(error.login == 'invalid'){%>
+    <div id="login-error">
+        <span id="error-header">
+            Error!
+        </span>
+        <p id="login-msg">Email not found or Password incorrect!</p>
+        <button id="login-error-btn">
+            Ok!
+        </button>
+    </div>
+    <%}%>
+    <div id="dropdown" onclick="openclosenav()">
+        <!-- Icon made by Freepik from www.flaticon.com -->
+        <img id="dropdown-img" src="/imgs/dropdown.png" alt="dropdown menu">
+    </div>
+    <header id="tocollapse">
+        <nav>
+            <div id="brand">
+                <strong>HC</strong>
+            </div>
+            <div id="menu">
+                <ul>
+                    <a href="/home" class="nav-items">
+                        <li>Home</li>
+                    </a>
+                </ul>
+            </div>
+            <div id="login-reg">
+                <ul>
+                    <a href="/register"><button id="reg-btn">Register</button></a>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div id="goup">
+            <a href="#login">
+                <!-- Icon made by Pixel perfect from www.flaticon.com -->
+                <img src="/imgs/up.png" alt="TOP">
+            </a>
+        </div>
+        <section id="login">
+            <div class="image-container">
+                <img id="img" src="/imgs/saly-2.svg" alt="">
+            </div>
+            <div id="forgot-pass-popup">
+                <div id="popup">
+                    <img src="https://c.tenor.com/gzZyXppSYFoAAAAC/kirk-shocked.gif" alt="" srcset="">
+                    <div class="text">
+                        Relax and try to remember your password.
+                    </div>
+                    
+                </div>
+                <button id="thanks-btn">
+                    Thanks!
+                </button>
+            </div>
+            <div class="form">
+                <div class="form-container">
+                    <h1>Login</h1>
+                    <form action="/login" method="post">
+                        <div class="input">
+                            <label for="email">Email</label>
+                            <div class="icon-input">
+                                <i class="fas fa-user"></i>
+                                <input type="email" name="email" id="email" placeholder="Enter your email" required>
+                            </div>
+                        </div>
+                        <div class="input">
+                            <label for="pass">Password</label>
+                            <div class="icon-input">
+                                <i class="fas fa-key"></i>
+                                <input type="password" name="pass" id="pass" placeholder="Enter your password" required>
+                                <i class="far fa-eye" id="see-pass" onclick="hideunhidepass()"></i>
+                            </div>
+                        </div>
+                        <div class="icon-input forgot-pass-box">
+                            <span id="forgot-pass">Forgot password?</span>
+                            <i class="far fa-sad-cry"></i>
+                        </div>
+                        <div class="submit-btn">
+                            <button type="submit">
+                                <div class="icon-input">
+                                    <p>Login</p>
+                                    <i class="fas fa-sign-in-alt"></i>
+                                </div>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <script src="/validate.js"></script>
+        <script src="/forgotpass.js"></script>
+        <script src="/copypaste.js"></script>
+        <%- include('partials/colourBlindChange') %>
+        <script src="/colourBlind.js"></script>
+    </main>
+</body>
+
+</html>

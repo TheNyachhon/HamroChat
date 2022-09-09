@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('partials/header') %>
+    <title>HamroChat - Profile</title>
+</head>
+
+<body>
+    <%- include('partials/chatHeader') %>
+    <main>
+        <div id="goup">
+            <a href="#">
+                <!-- Icon made by Pixel perfect from www.flaticon.com -->
+                <img src="/imgs/up.png" alt="TOP">
+            </a>
+        </div>
+        <section id="chat">
+            <%-include('partials/help')%>
+            <div id="chat-container">
+                <div id="chat-header">
+                    <div id="chat-header-img" class="back-arrow">
+                        <a href="/HamroChat-home/"><i class="fas fa-angle-double-left"></i></a>
+                    </div>
+                    <div id="user-header-img" class="header-width-i">
+                        <i class="far fa-user"></i>
+                    </div>
+                </div>
+                <div id="user-details-box">
+                    <div id="user-header-name">
+                        <%=user.firstName+" "+user.lastName%>
+                    </div>
+                    <div id="user-profile-body">
+                        <div class="user-profile-info">
+                            <label for="">Email</label>
+                            <p><%=user.email%></p>
+                        </div>
+                        <div class="user-profile-info">
+                            <label for="">D.O.B</label>
+                            <%let date =  new Date(user.DOB)%>
+                            <p><%=date.toDateString()%></p>
+                        </div>
+                        <div class="user-profile-info">
+                            <label for="">Gender</label>
+                            <p><%=user.gender%></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script src="/validate.js"></script>
+        <%- include('partials/colourBlindChange') %>
+        <script src="/colourBlind.js"></script>
+    </main>
+</body>
+
+</html>
